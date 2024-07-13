@@ -1,17 +1,22 @@
 .item {
-  width: 300px;
+  width: 260px;
 }
 .item p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 5px 0px;
   font-size: 20px;
   font-weight: 900;
 }
 .item-prices {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 .item-price-new {
-  color: #fecd57;
+  color: #f3af11;
   font-size: 20px;
   font-weight: 700;
 }

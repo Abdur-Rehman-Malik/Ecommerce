@@ -1,5 +1,5 @@
 .hero {
-  height: 100vh;
+  height: 110vh;
   background: linear-gradient(180deg, #fecd57, #f5deb3 90%);
   display: flex;
 }
@@ -41,9 +41,10 @@
   border-radius: 75px;
   background-color: #da9d0f;
   color: white;
-  /* margin-top: 10px; */
+  margin-top: 10px;
   font-size: 20px;
   font-weight: 600;
+  cursor: pointer;
 }
 .hero-right {
   flex: 1;

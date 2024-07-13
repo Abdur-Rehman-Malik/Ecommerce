@@ -1,24 +1,30 @@
-.popular {
+.new-colletions {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  height: 130vh;
+  height: 200vh;
 }
-.popular h1 {
+.new-colletions h1 {
   color: black;
   font-size: 50px;
   font-weight: 900;
   margin-top: 50px;
 }
-.popular hr {
+.new-colletions hr {
   width: 500px;
   height: 00px;
   border-radius: 10px;
   background: yellow;
 }
-.popular-item {
+/* .collections {
   margin-top: 30px;
   display: flex;
   gap: 50px;
+} */
+.collections {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 40px;
+  gap: 20px;
 }

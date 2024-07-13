@@ -325,3 +325,5 @@ let all_products = [
     old_price: 3800,
   },
 ];
+
+export default all_products;
