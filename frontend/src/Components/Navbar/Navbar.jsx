@@ -35,16 +35,13 @@ const Navbar = () => {
           </li>
           <li
             onClick={() => {
-              setMenu("womens");
+              setMenu("women");
             }}
           >
-            <Link
-              style={{ textDecoration: "none", color: "black" }}
-              to="womens"
-            >
+            <Link style={{ textDecoration: "none", color: "black" }} to="women">
               Women
-            </Link>{" "}
-            {menu === "womens" ? <hr /> : <></>}
+            </Link>
+            {menu === "women" ? <hr /> : <></>}
           </li>
           <li
             onClick={() => {

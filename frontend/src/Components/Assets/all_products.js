@@ -4,7 +4,7 @@ import p3_img from "./product_3.png";
 import p4_img from "./product_4.png";
 import p5_img from "./product_5.png";
 import p6_img from "./product_6.png";
-import p7_img from "./product_7.png";
+import p7_img from "./product_7.jpg";
 import p8_img from "./product_8.png";
 import p9_img from "./product_9.png";
 import p10_img from "./product_10.png";
