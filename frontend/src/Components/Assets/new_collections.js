@@ -1,12 +1,12 @@
-import p28_img from "./product_28.jpg";
-import p29_img from "./product_29.jpg";
-import p30_img from "./product_30.jpg";
-// import p31_img from "./product_31.jpg";
-import p32_img from "./product_32.jpg";
-import p33_img from "./product_33.jpg";
-// import p34_img from "./product_34.jpg";
-import p35_img from "./product_35.jpg";
-// import p36_img from "./product_36.jpg";
+import p28_img from "./product_28.png";
+import p29_img from "./product_29.png";
+import p30_img from "./product_30.png";
+// import p31_img from "./product_31.png";
+import p32_img from "./product_32.png";
+import p33_img from "./product_33.png";
+// import p34_img from "./product_34.png";
+import p35_img from "./product_35.png";
+// import p36_img from "./product_36.png";
 
 let all_products = [
   {
