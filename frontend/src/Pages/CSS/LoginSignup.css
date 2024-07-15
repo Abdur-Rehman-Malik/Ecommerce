@@ -9,9 +9,13 @@
   width: 400px;
   height: 400px;
   margin: auto;
+  border-radius: 5px;
   padding: 10px 90px;
 }
 .loginsignup-container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 10px 0px;
 }
 .loginsignup-fields {
