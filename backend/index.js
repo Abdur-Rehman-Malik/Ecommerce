@@ -42,7 +42,7 @@ app.use("/images", express.static("upload/images"));
 
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
-    Success: 1,
+    success: 1,
     image_url: `http://localhost:${port}/images/${req.file.filename}`,
   });
 });
@@ -106,7 +106,7 @@ app.post("/addproduct", async (req, res) => {
   await product.save();
   console.log("Saved");
   res.json({
-    Success: true,
+    success: true,
     name: req.body.name,
   });
 });
@@ -117,7 +117,7 @@ app.post("/removeproduct", async (req, res) => {
   await Product.findOneAndDelete({ id: req.body.id });
   console.log("Successfully Removed");
   res.json({
-    Success: true,
+    success: true,
     name: req.body.name,
   });
 });

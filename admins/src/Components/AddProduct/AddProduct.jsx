@@ -1,27 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AddProduct.css";
 import upload_area from "../../assets/upload_area.png";
 const AddProduct = () => {
+  const [image, setimage] = useState(false);
+
+  const [productDetails, setProductDetails] = useState({
+    name: "",
+    image: "",
+    category: "Women",
+    new_price: "",
+    old_price: "",
+  });
+
+  const ImageHandler = (e) => {
+    setimage(e.target.files[0]);
+  };
+  const ChangeHandler = (e) => {
+    setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
+  };
+  const Add_Product = async () => {
+    console.log(productDetails);
+    let responseData;
+    let product = productDetails;
+    let formData = new FormData();
+    formData.append("product", image);
+    await fetch("http://localhost:4000/upload", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        responseData = data;
+      });
+    if (responseData.success) {
+      product.image = responseData.image_url;
+      console.log(product);
+      await fetch("http://localhost:4000/addproduct", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          data.success ? alert("Product Added") : alert("Failed");
+        });
+    } else {
+      console.error("Upload failed:", responseData.message);
+    }
+  };
+
   return (
     <>
       <div className="add-product">
         <div className="addproduct-itemfield">
           <p>Product Title</p>
-          <input type="text" name="name" placeholder="Type here" />
+          <input
+            value={productDetails.name}
+            onChange={ChangeHandler}
+            type="text"
+            name="name"
+            placeholder="Type here"
+          />
         </div>
         <div className="addproduct-price">
           <div className="addproduct-itemfield">
             <p>Price</p>
-            <input type="text" name="old_price" placeholder="Type here" />
+            <input
+              value={productDetails.old_price}
+              onChange={ChangeHandler}
+              type="text"
+              name="old_price"
+              placeholder="Type here"
+            />
           </div>
           <div className="addproduct-itemfield">
             <p>Offer Price</p>
-            <input type="text" name="new_price" placeholder="Type here" />
+            <input
+              value={productDetails.new_price}
+              onChange={ChangeHandler}
+              type="text"
+              name="new_price"
+              placeholder="Type here"
+            />
           </div>
         </div>
         <div className="addproduct-itemfield">
           <p>Product Category</p>
-          <select name="category">
+          <select
+            value={productDetails.category}
+            onChange={ChangeHandler}
+            name="category"
+          >
             <option value="Women">Women</option>
             <option value="Men">Men</option>
             <option value="Kid">Kid</option>
@@ -30,14 +105,27 @@ const AddProduct = () => {
         <div className="addproduct-itemfield">
           <label htmlFor="file input">
             <img
-              src={upload_area}
-              height={50}
+              src={image ? URL.createObjectURL(image) : upload_area}
+              height={70}
               className="addproduct-thumbnail-img"
             />
           </label>
-          <input type="file" name="image" id="file input" hidden />
+          <input
+            onChange={ImageHandler}
+            type="file"
+            name="image"
+            id="file input"
+            hidden
+          />
         </div>
-        <button className="addproduct-btn">ADD</button>
+        <button
+          onClick={() => {
+            Add_Product();
+          }}
+          className="addproduct-btn"
+        >
+          ADD
+        </button>
       </div>
       ;
     </>
