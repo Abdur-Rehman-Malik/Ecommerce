@@ -6,17 +6,27 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const { type } = require("os");
 
 app.use(express.json());
 app.use(cors());
 
 // Database connection with mongodb
 
-mongoose.connect(
-  "mongodb+srv://abdurrehmanm849:rehman6085@cluster0.qhqqjl4.mongodb.net/e-commerce"
-);
-
+const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://abdurrehmanm849:rehman6085@cluster0.qhqqjl4.mongodb.net/e-commerce?retryWrites=true&w=majority",
+      {
+        serverSelectionTimeoutMS: 50000, // Optional: Increase the timeout to 30 seconds
+      }
+    );
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection error:", error.message);
+    setTimeout(connectDB, 5000); // Retry after 5 seconds
+  }
+};
+connectDB();
 // API CREATION
 
 app.get("/", (req, res) => {
@@ -199,6 +209,14 @@ app.post("/login", async (req, res) => {
     res.json({ success: false, errors: "Wrong email Id" });
   }
 });
+
+// Creating endpoint for new collection data
+// app.get("/newcollections", async (req, res) => {
+//   let products = await Product.find({});
+//   let newcollections = products.slice(1).slice(-8);
+//   console.log("NewCollection Fetched");
+//   res.send(newcollections);
+// });
 
 app.listen(port, (error) => {
   if (!error) {
