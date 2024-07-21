@@ -13,9 +13,15 @@ const Product = () => {
   return (
     <>
       <div>
-        <Breadcrum product={product} />
-        <ProductDisplay product={product} />
-        <DescriptionBox />
+        {product ? (
+          <>
+            <Breadcrum product={product} />
+            <ProductDisplay product={product} />
+            <DescriptionBox />
+          </>
+        ) : (
+          <p>Product not found</p>
+        )}
       </div>
     </>
   );
