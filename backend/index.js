@@ -15,7 +15,7 @@ app.use(cors());
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://abdurrehmanm849:rehman6085@cluster0.qhqqjl4.mongodb.net/e-commerce?retryWrites=true&w=majority",
+      "mongodb+srv://abdurrehmanm849:rehman6085@cluster0.qhqqjl4.mongodb.net/e-commerce",
       {
         serverSelectionTimeoutMS: 50000, // Optional: Increase the timeout to 30 seconds
       }
@@ -211,12 +211,22 @@ app.post("/login", async (req, res) => {
 });
 
 // Creating endpoint for new collection data
-// app.get("/newcollections", async (req, res) => {
-//   let products = await Product.find({});
-//   let newcollections = products.slice(1).slice(-8);
-//   console.log("NewCollection Fetched");
-//   res.send(newcollections);
-// });
+
+app.get("/newcollections", async (req, res) => {
+  let products = await Product.find({});
+  let newcollections = products.slice(1).slice(-6);
+  console.log("NewCollection Fetched");
+  res.send(newcollections);
+});
+
+// creating endpoint for popular in men section
+
+app.get("/popluarInMen", async (req, res) => {
+  let products = await Product.find({ category: "men" });
+  let popular_in_men = products.slice(0, 4);
+  console.log("Popular in men");
+  res.send(popular_in_men);
+});
 
 app.listen(port, (error) => {
   if (!error) {
